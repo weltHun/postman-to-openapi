@@ -1,0 +1,5679 @@
+openapi: 3.0.0
+info:
+  title: dta-wir-202401251959
+  description: this is an overview of the collection.
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+  - url: http://127.0.0.1:31101
+tags:
+  - name: activity
+    description: activity
+  - name: diary
+    description: diary
+  - name: insight
+    description: insight
+  - name: login
+    description: login
+  - name: register
+    description: register
+  - name: settings
+    description: settings
+  - name: sleep
+    description: sleep
+  - name: today
+    description: today
+paths:
+  /v2/userCycles:
+    get:
+      tags:
+        - default
+      summary: User Cycle List API
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: offset
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                total: <integer>
+                data:
+                  - id: <integer>
+                    userId: <integer>
+                    accesscodeId: <integer>
+                    groupId: <integer>
+                    status: <integer>
+                    startAt: <integer>
+                    endAt: <integer>
+                    siteId: <integer>
+                    departmentId: <integer>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                  - id: <integer>
+                    userId: <integer>
+                    accesscodeId: <integer>
+                    groupId: <integer>
+                    status: <integer>
+                    startAt: <integer>
+                    endAt: <integer>
+                    siteId: <integer>
+                    departmentId: <integer>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+  /v2/userCycles/users/{userId}:
+    get:
+      tags:
+        - settings
+      summary: User Cycle GET API
+      description: '#app-settings'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: <integer>
+                userId: <integer>
+                accesscodeId: <integer>
+                groupId: <integer>
+                status: <integer>
+                startAt: <integer>
+                endAt: <integer>
+                siteId: <integer>
+                departmentId: <integer>
+                createdAt: <integer>
+                updatedAt: <integer>
+  /v2/userCycles/{id}:
+    patch:
+      tags:
+        - default
+      summary: User Cycle UPDATE API
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: <integer>
+                accesscodeId: <integer>
+                status: <integer>
+                startAt: <integer>
+                endAt: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/auth/register/email/validate:
+    post:
+      tags:
+        - register
+      summary: Email For Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <email>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_REGISTRATION_STATUS_UNAVAILABLE
+                data:
+                  userId: <integer>
+                  uid: <string>
+                  provider: FIREBASE_APPLE
+                  projectId: <integer>
+                  email: <string>
+                  active: <boolean>
+                  createdAt: <integer>
+                  updatedAt: <integer>
+                  accesscodeId: <integer>
+  /v2/auth/emails/code:
+    post:
+      tags:
+        - register
+      summary: Email Verification Code Send
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <email>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                email: <string>
+                success: <boolean>
+  /v2/auth/emails/code/validate:
+    post:
+      tags:
+        - register
+      summary: Email Verification Code Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <email>
+                code: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                valid: <boolean>
+  /v2/auth/register/di/validate:
+    post:
+      tags:
+        - register
+      summary: Di for Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                di: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_REGISTRATION_STATUS_REACTIVATION_REQUIRED
+                data:
+                  - userId: <integer>
+                    uid: <string>
+                    provider: FIREBASE_GOOGLE
+                    projectId: <integer>
+                    email: <string>
+                    active: <boolean>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    accesscodeId: <integer>
+                  - userId: <integer>
+                    uid: <string>
+                    provider: WELT_EMAIL
+                    projectId: <integer>
+                    email: <string>
+                    active: <boolean>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    accesscodeId: <integer>
+  /v2/auth/user/ci/validate:
+    post:
+      tags:
+        - register
+      summary: Ci for Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ci: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_STATUS_INACTIVE
+                data:
+                  userId: <integer>
+                  uid: <string>
+                  provider: WELT_PASSWORD
+                  projectId: <integer>
+                  email: <string>
+                  active: <boolean>
+                  createdAt: <integer>
+                  updatedAt: <integer>
+                  accesscodeId: <integer>
+  /v2/auth/register/pii/validate:
+    post:
+      tags:
+        - register
+      summary: Pii For Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ci: <string>
+                name: <string>
+                birthDate: <string>
+                gender: F
+                phoneNumber: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_REGISTRATION_STATUS_UNAVAILABLE
+                piiId: <integer>
+                data:
+                  userId: <integer>
+                  uid: <string>
+                  provider: FIREBASE_APPLE
+                  projectId: <integer>
+                  email: <string>
+                  active: <boolean>
+                  createdAt: <integer>
+                  updatedAt: <integer>
+                  accesscodeId: <integer>
+  /v2/auth/register/oauth/validate:
+    post:
+      tags:
+        - register
+      summary: User OAuth For Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                oauthUid: <string>
+                oauthProvider: FIREBASE_GOOGLE
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_REGISTRATION_STATUS_UNAVAILABLE
+                data:
+                  userId: <integer>
+                  uid: <string>
+                  provider: FIREBASE_APPLE
+                  projectId: <integer>
+                  email: <string>
+                  active: <boolean>
+                  createdAt: <integer>
+                  updatedAt: <integer>
+                  accesscodeId: <integer>
+  /v2/auth/accesscodes/validate:
+    post:
+      tags:
+        - register
+      summary: Accesscode Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: ACCESSCODE_STATUS_AVAILABLE
+                data:
+                  id: <integer>
+                  projectId: <integer>
+                  code: <string>
+                  groupId: <integer>
+                  siteId: <integer>
+                  departmentId: <integer>
+                  treatmentPeriodDays: <integer>
+                  usagePeriodDays: <integer>
+                  meta:
+                    value: >-
+                      reference #/components/schemas/GoogleProtobufAny not found
+                      in the OpenAPI spec
+                  email: <string>
+                  createdAt: <integer>
+                  expiresAt: <integer>
+                  emailRegisteredAt: <integer>
+                  userId: <integer>
+                  userCreatedAt: <integer>
+  /v2/auth/register/user/accesscode/validate:
+    post:
+      tags:
+        - register
+      summary: Accesscode(connectDtx) for Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                di: <string>
+                accesscode: <string>
+                connectdtxCrc32cHashCode: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_ACCESSCODE_REGISTRATION_STATUS_NOT_MATCHED
+                accesscodeId: <integer>
+                data:
+                  - userId: <integer>
+                    uid: <string>
+                    provider: WELT_PASSWORD
+                    projectId: <integer>
+                    email: <string>
+                    active: <boolean>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    accesscodeId: <integer>
+                  - userId: <integer>
+                    uid: <string>
+                    provider: OAUTH_PROVIDER_UNKNOWN
+                    projectId: <integer>
+                    email: <string>
+                    active: <boolean>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    accesscodeId: <integer>
+  /v2/auth/register/user/validate:
+    post:
+      tags:
+        - register
+      summary: Accesscode(Phi) for Registration Validate
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                di: <string>
+                accesscodeId: <integer>
+                phiUserCode: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: USER_REGISTRATION_STATUS_REACTIVATION_REQUIRED
+                data:
+                  - userId: <integer>
+                    uid: <string>
+                    provider: FIREBASE_GOOGLE
+                    projectId: <integer>
+                    email: <string>
+                    active: <boolean>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    accesscodeId: <integer>
+                  - userId: <integer>
+                    uid: <string>
+                    provider: WELT_EMAIL
+                    projectId: <integer>
+                    email: <string>
+                    active: <boolean>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    accesscodeId: <integer>
+  /v2/auth/register/password:
+    post:
+      tags:
+        - register
+      summary: User Register
+      description: '#app-register'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                di: <string>
+                email: <email>
+                password: <string>
+                accesscodeId: <integer>
+                userName: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userId: <integer>
+                userCycleId: <integer>
+  /v2/auth/login/password:
+    post:
+      tags:
+        - login
+      summary: User Log In
+      description: '#app-login'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <email>
+                password: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                user:
+                  id: <integer>
+                  email: <string>
+                  userName: <string>
+                  userProjectCycleId: <integer>
+                  status: <integer>
+                  siteId: <integer>
+                  groupId: <integer>
+                  accesscodeId: <integer>
+                  accesscode: <string>
+                  startAt: <integer>
+                  endAt: <integer>
+                tokens:
+                  access: <string>
+                  refresh: <string>
+  /v2/auth/user/delete:
+    post:
+      tags:
+        - login
+      summary: User Delete
+      description: '#app-login'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <email>
+                password: <string>
+                userId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                detail: DELETE_USER_FAILURE_REASON_UNKNOWN
+  /v2/auth/user/reactivate:
+    post:
+      tags:
+        - login
+      summary: User Reactivate
+      description: '#app-login'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                accesscodeId: <integer>
+                email: <email>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                user:
+                  id: <integer>
+                  email: <string>
+                  userName: <string>
+                  userProjectCycleId: <integer>
+                  status: <integer>
+                  siteId: <integer>
+                  groupId: <integer>
+                  accesscodeId: <integer>
+                  accesscode: <string>
+                  startAt: <integer>
+                  endAt: <integer>
+                tokens:
+                  access: <string>
+                  refresh: <string>
+  /v2/auth/password/reset:
+    post:
+      tags:
+        - login
+      summary: User Password Reset
+      description: '#app-login'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                di: <string>
+                email: <email>
+                password: <string>
+                userId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/auth/token/refresh:
+    post:
+      tags:
+        - login
+      summary: User Token Refresh
+      description: '#app-login'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                token: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                access: <string>
+                refresh: <string>
+  /v2/userConfigs/users/{userId}:
+    patch:
+      tags:
+        - default
+      summary: UPDATE User Configs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                config:
+                  platform: <string>
+                  deviceName: <string>
+                  osVersion: <string>
+                  appVersion: <string>
+                fcmToken:
+                  fcmToken: <string>
+                  firebaseProjectId: <string>
+                pushNotification:
+                  systemSetting: <boolean>
+                  app: <boolean>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                config:
+                  platform: <string>
+                  deviceName: <string>
+                  osVersion: <string>
+                  appVersion: <string>
+                fcmToken:
+                  fcmToken: <string>
+                  firebaseProjectId: <string>
+                pushNotification:
+                  systemSetting: <boolean>
+                  app: <boolean>
+  /v2/userConfigs/users/{userId}/permissionLogs:
+    post:
+      tags:
+        - default
+      summary: CREATE User Configs Permission Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                permission:
+                  platform: <string>
+                  deviceName: <string>
+                  permissions: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  platform: <string>
+                  deviceName: <string>
+                  permissions: {}
+  /v2/userConfigs/users/{userId}/pushNotification:
+    get:
+      tags:
+        - default
+      summary: GET User Configs Push Notification
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  systemSetting: <boolean>
+                  app: <boolean>
+    patch:
+      tags:
+        - default
+      summary: UPDATE User Configs Push Notification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                systemSettings: <boolean>
+                app: <boolean>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  systemSetting: <boolean>
+                  app: <boolean>
+  /v2/appStates/users/{userId}:
+    get:
+      tags:
+        - default
+      summary: GET User App States
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - key: <string>
+                    value: <string>
+                  - key: <string>
+                    value: <string>
+  /v2/today/circle/users/{userId}:
+    get:
+      tags:
+        - today
+      summary: GET User Circle
+      description: >-
+        #app-today
+
+
+        This HTTP GET request is used to retrieve information about a specific
+        user's activities for the current day. The request should be sent to
+        {{baseUrl}}/v2/today/circle/users/:userId, with an optional query
+        parameter test which should be a boolean value. The response will
+        include data related to the user's activities for the day, such as date,
+        type, sleep goal, and diary summary. Here are some examples of the
+        response data:
+
+
+        - date: The date of the activity
+
+        - type: The type of activity
+
+        - sleepGoal: Details about the user's sleep goal, including userId,
+        date, lot, aet, duration, and isUpdated
+
+        - diarySummary: Summary of the user's diary, including answerId, date,
+        tst, and sleepQuality
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  date: <integer>
+                  type: CIRCLE_TYPE_UNKNOWN
+                  sleepGoal:
+                    userId: <integer>
+                    date: <integer>
+                    lot: <string>
+                    aet: <string>
+                    duration: <integer>
+                    isUpdated: <boolean>
+                  diarySummary:
+                    answerId: <integer>
+                    date: <integer>
+                    tst: <integer>
+                    sleepQuality: <integer>
+  /v2/today/dailyCalendar/users/{userId}:
+    get:
+      tags:
+        - today
+      summary: GET User Calendar
+      description: '#app-today'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  startAt: <long>
+                  endAt: <long>
+                  diaries:
+                    - dateTime: <long>
+                      answerId: <integer>
+                      dns: <boolean>
+                      tst: <integer>
+                      sleepQuality: <integer>
+                    - dateTime: <long>
+                      answerId: <integer>
+                      dns: <boolean>
+                      tst: <integer>
+                      sleepQuality: <integer>
+  /v2/today/mission/users/{userId}:
+    get:
+      tags:
+        - today
+      summary: GET User Mission
+      description: '#app-today'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - type: MISSION_TYPE_ARTICLE
+                    status: MISSION_STATUS_TO_DO
+                    title: <string>
+                    itemId: <integer>
+                  - type: MISSION_TYPE_ARTICLE_CARD
+                    status: MISSION_STATUS_COMPLETED
+                    title: <string>
+                    itemId: <integer>
+  /v2/today/sleepGoals/users/{userId}/success:
+    get:
+      tags:
+        - today
+      summary: GET User Sleep Goal
+      description: '#app-today'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - date: <integer>
+                    lotSuccess: <boolean>
+                    aetSuccess: <boolean>
+                  - date: <integer>
+                    lotSuccess: <boolean>
+                    aetSuccess: <boolean>
+  /v2/activities/audios/{audioId}/users/{userId}/logs/{logId}:
+    post:
+      tags:
+        - activity
+      summary: CREATE User Audio Activity Logs
+      description: '#app-activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: audioId
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: '(Required) '
+          example: '1'
+        - name: userId
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: '(Required) '
+          example: '222'
+        - name: logId
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: '(Required) '
+          example: '1'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                logId: <integer>
+  /v2/activities/audios/{audioId}/users/{userId}/open:
+    post:
+      tags:
+        - activity
+      summary: OPEN User Audio Activity
+      description: '#app-activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                audioId: <integer>
+                userId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: audioId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                logId: <integer>
+  /v2/activities/chatbots/onboarding/users/{userId}/done:
+    post:
+      tags:
+        - activity
+      summary: DONE User Chatbot Activity Onboarding
+      description: '#app-activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                logId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                logId: <integer>
+  /v2/activities/chatbots/{chatbotId}/users/{userId}/logs/{logId}:
+    post:
+      tags:
+        - activity
+      summary: CREATE User Chatbot Activity Log
+      description: '#app-activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                chatbotId: <integer>
+                userId: <integer>
+                logId: <integer>
+                log:
+                  Duis25c: <string>
+                  ullamcoe55: <string>
+                  commodob1: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: chatbotId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: logId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                logId: <integer>
+  /v2/activities/chatbots/{chatbotId}/users/{userId}/open:
+    post:
+      tags:
+        - activity
+      summary: OPEN User Chatbot Activity
+      description: '#app-activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                chatbotId: <integer>
+                userId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: chatbotId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                logId: <integer>
+  /v2/activities/users/{userId}/chatbot:
+    get:
+      tags:
+        - activity
+      summary: GET User Chatbot Activity
+      description: '#app-activity'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                chatbotId: <integer>
+                url: <string>
+  /v2/diaries/users/{userId}:
+    get:
+      tags:
+        - diary
+      summary: GET User Diary
+      description: '#app-diary'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: answerId
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                answerId: <integer>
+                date: <integer>
+                answer:
+                  dns: <boolean>
+                  lot: <integer>
+                  ast: <integer>
+                  aet: <integer>
+                  waso: <integer>
+                  problems:
+                    - optionKey: <integer>
+                      answerText: <string>
+                    - optionKey: <integer>
+                      answerText: <string>
+                  lifestyles:
+                    - optionKey: <integer>
+                      answerText: <string>
+                    - optionKey: <integer>
+                      answerText: <string>
+                  pill: <boolean>
+                  nap: <integer>
+                  sleepQuality: <integer>
+                  tst: <integer>
+                  timezone:
+                    id: <string>
+                    offsetInMinutes: <integer>
+  /v2/diaries/users/{userId}/list:
+    get:
+      tags:
+        - diary
+      summary: LIST User Diaries
+      description: '#app-diary'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: startDate
+          in: query
+          schema:
+            type: string
+          example: '6185-07-72'
+        - name: endDate
+          in: query
+          schema:
+            type: string
+          example: '6185-07-72'
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalCount: <integer>
+                count: <integer>
+                items:
+                  - dateString: <string>
+                    dns: <boolean>
+                    lot: <integer>
+                    ast: <integer>
+                    aet: <integer>
+                    waso: <integer>
+                    problems:
+                      - optionKey: <integer>
+                        answerText: <string>
+                      - optionKey: <integer>
+                        answerText: <string>
+                    lifestyles:
+                      - optionKey: <integer>
+                        answerText: <string>
+                      - optionKey: <integer>
+                        answerText: <string>
+                    pill: <boolean>
+                    nap: <integer>
+                    sleepQuality: <integer>
+                    tst: <integer>
+                    se: <integer>
+                    timezone:
+                      id: <string>
+                      offsetInMinutes: <integer>
+                  - dateString: <string>
+                    dns: <boolean>
+                    lot: <integer>
+                    ast: <integer>
+                    aet: <integer>
+                    waso: <integer>
+                    problems:
+                      - optionKey: <integer>
+                        answerText: <string>
+                      - optionKey: <integer>
+                        answerText: <string>
+                    lifestyles:
+                      - optionKey: <integer>
+                        answerText: <string>
+                      - optionKey: <integer>
+                        answerText: <string>
+                    pill: <boolean>
+                    nap: <integer>
+                    sleepQuality: <integer>
+                    tst: <integer>
+                    se: <integer>
+                    timezone:
+                      id: <string>
+                      offsetInMinutes: <integer>
+  /v2/diaries/users/{userId}/today:
+    put:
+      tags:
+        - diary
+      summary: UPSERT User Diary
+      description: '#app-diary'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                date: <integer>
+                answer:
+                  dns: <boolean>
+                  lot: <integer>
+                  ast: <integer>
+                  aet: <integer>
+                  waso: <integer>
+                  problems:
+                    - optionKey: <integer>
+                      answerText: <string>
+                    - optionKey: <integer>
+                      answerText: <string>
+                  lifestyles:
+                    - optionKey: <integer>
+                      answerText: <string>
+                    - optionKey: <integer>
+                      answerText: <string>
+                  pill: <boolean>
+                  nap: <integer>
+                  sleepQuality: <integer>
+                  tst: <integer>
+                  timezone:
+                    id: <string>
+                    offsetInMinutes: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                answerId: <integer>
+  /v2/sleeps/goal/users/{userId}:
+    get:
+      tags:
+        - sleep
+      summary: GET User Sleep Goal
+      description: '#app-sleep'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userId: <integer>
+                date: <integer>
+                lot: <string>
+                aet: <string>
+                duration: <integer>
+                isUpdated: <boolean>
+                timezone:
+                  id: <string>
+                  offsetInMinutes: <integer>
+    put:
+      tags:
+        - sleep
+      summary: UPSERT User Sleep Goal
+      description: '#app-sleep'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                date: <integer>
+                lot: <string>
+                aet: <string>
+                duration: <integer>
+                isUpdated: <boolean>
+                timezone:
+                  id: <string>
+                  offsetInMinutes: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userId: <integer>
+                date: <integer>
+                lot: <string>
+                aet: <string>
+                duration: <integer>
+                isUpdated: <boolean>
+                timezone:
+                  id: <string>
+                  offsetInMinutes: <integer>
+  /v2/sleeps/goal/users/{userId}/success:
+    get:
+      tags:
+        - sleep
+      summary: GET User Sleep Goal Success
+      description: '#app-sleep'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userSleepGoalSuccess:
+                  date: <integer>
+                  createdByType: <string>
+                  targetLot: <integer>
+                  targetAet: <integer>
+                  createdAt: <integer>
+                  timezone:
+                    id: <string>
+                    offsetInMinutes: <integer>
+                  sleepGoalLogId: <integer>
+                  lotSuccess: <boolean>
+                  aetSuccess: <boolean>
+  /v2/insights/badges/users/{userId}:
+    get:
+      tags:
+        - insight
+      summary: GET User Insight Badges
+      description: >-
+        #app-insight
+
+
+        Get User Insight Badges, and returns a collection
+        `GetUserInsightBadgesResponse`
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - badgeId: <integer>
+                    badgeCode: <string>
+                    title: <string>
+                    description: <string>
+                    imageUrl: <string>
+                    isNew: <boolean>
+                    isEarned: <boolean>
+                    earnedAt: <integer>
+                  - badgeId: <integer>
+                    badgeCode: <string>
+                    title: <string>
+                    description: <string>
+                    imageUrl: <string>
+                    isNew: <boolean>
+                    isEarned: <boolean>
+                    earnedAt: <integer>
+  /v2/insights/badges/{badgeId}/users/{userId}/new/confirmation:
+    patch:
+      tags:
+        - insight
+      summary: UPDATE User Insight Badge New Confirmation
+      description: >-
+        #app-insight
+
+
+        Patch User Insight Badge New Confirmation, and returns a collection
+        `PatchUserInsightBadgeNewConfirmationResponse`
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: badgeId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userBadgeId: <integer>
+  /v2/insights/charts/users/{userId}:
+    get:
+      tags:
+        - insight
+      summary: GET User Insight Chart Items
+      description: >-
+        #app-insight
+
+
+        Get User Insight Chart Items, and returns a collection
+        `GetUserInsightChartItemsResponse`
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) required userID
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                startDate: <integer>
+                data:
+                  - refDate: <integer>
+                    dns: <boolean>
+                    actualLOT: <integer>
+                    actualAET: <integer>
+                    targetLOT: <integer>
+                    targetAET: <integer>
+                    hasCompliedWithLOT: <boolean>
+                    hasCompliedWithAET: <boolean>
+                  - refDate: <integer>
+                    dns: <boolean>
+                    actualLOT: <integer>
+                    actualAET: <integer>
+                    targetLOT: <integer>
+                    targetAET: <integer>
+                    hasCompliedWithLOT: <boolean>
+                    hasCompliedWithAET: <boolean>
+  /v2/coreLessons/users/{userId}:
+    get:
+      tags:
+        - default
+      summary: LIST User Core Lessons
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - sessionId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    userLearningStatus: <integer>
+                    sessionItems:
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                    unlockRemainingDay: <integer>
+                  - sessionId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    userLearningStatus: <integer>
+                    sessionItems:
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                    unlockRemainingDay: <integer>
+  /v2/articles/items/{itemId}/ratings:
+    post:
+      tags:
+        - default
+      summary: CREATE User Article Ratings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                itemId: <integer>
+                rating: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: itemId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                answerId: <integer>
+  /v2/articles/users/{userId}:
+    get:
+      tags:
+        - default
+      summary: LIST User Article
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - sessionId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    userLearningStatus: <integer>
+                    sessionItems:
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                        isLiked: <boolean>
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                        isLiked: <boolean>
+                  - sessionId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    userLearningStatus: <integer>
+                    sessionItems:
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                        isLiked: <boolean>
+                      - sessionItemId: <integer>
+                        itemTypeId: <integer>
+                        order: <integer>
+                        name: <string>
+                        description: <string>
+                        userLearningStatus: <integer>
+                        data: {}
+                        isLiked: <boolean>
+  /v2/articles/users/{userId}/items/{itemId}/itemTypes/{itemTypeId}/like:
+    put:
+      tags:
+        - default
+      summary: UPSERT User Like By ItemId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                itemId: <integer>
+                itemTypeId: <integer>
+                isLiked: <boolean>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: itemId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: itemTypeId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/articles/users/{userId}/lessons/{lessonId}/cards:
+    get:
+      tags:
+        - default
+      summary: GET User Lesson Cards
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: includeRecommendedItems
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: lessonId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                itemInfo:
+                  item:
+                    sessionItemId: <integer>
+                    itemTypeId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    userLearningStatus: <integer>
+                    data: {}
+                    isLiked: <boolean>
+                  cards:
+                    - id: <integer>
+                      name: <string>
+                      description: <string>
+                      url: <string>
+                      order: <integer>
+                      audioUrl: <string>
+                      downloadUrl: <string>
+                      minTime: <integer>
+                      editorId: <integer>
+                      learningStatusId: <integer>
+                      createdAt: <integer>
+                      updatedAt: <integer>
+                    - id: <integer>
+                      name: <string>
+                      description: <string>
+                      url: <string>
+                      order: <integer>
+                      audioUrl: <string>
+                      downloadUrl: <string>
+                      minTime: <integer>
+                      editorId: <integer>
+                      learningStatusId: <integer>
+                      createdAt: <integer>
+                      updatedAt: <integer>
+                recommendedItems:
+                  - sessionItemId: <integer>
+                    itemTypeId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    userLearningStatus: <integer>
+                    data: {}
+                    isLiked: <boolean>
+                  - sessionItemId: <integer>
+                    itemTypeId: <integer>
+                    order: <integer>
+                    name: <string>
+                    description: <string>
+                    userLearningStatus: <integer>
+                    data: {}
+                    isLiked: <boolean>
+  /v2/sessionItems/cards/{cardId}:
+    get:
+      tags:
+        - default
+      summary: GetCardItemsByCardId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cardId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                cardItems:
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    url: <string>
+                    order: <integer>
+                    audioUrl: <string>
+                    downloadUrl: <string>
+                    minTime: <integer>
+                    editorId: <integer>
+                    learningStatusId: <integer>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    url: <string>
+                    order: <integer>
+                    audioUrl: <string>
+                    downloadUrl: <string>
+                    minTime: <integer>
+                    editorId: <integer>
+                    learningStatusId: <integer>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                sessionItems:
+                  - sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    userLearningStatus: <integer>
+                    sessionId: <integer>
+                    sessionOrder: <integer>
+                    isLiked: <boolean>
+                  - sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    userLearningStatus: <integer>
+                    sessionId: <integer>
+                    sessionOrder: <integer>
+                    isLiked: <boolean>
+  /v2/sessionItems/lessons:
+    get:
+      tags:
+        - default
+      summary: GetLessonsByLessonIdList
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: lessonIdList
+          in: query
+          schema:
+            type: string
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionId: <integer>
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionId: <integer>
+  /v2/sessionItems/users/{userId}/courses/{courseId}:
+    get:
+      tags:
+        - default
+      summary: GetUserSessionItemsByCourseId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userStatus
+          in: query
+          schema:
+            type: string
+          example: LEARNING_STATUS_DISPOSED
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: courseId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    userLearningStatus: <integer>
+                    sessionId: <integer>
+                    sessionOrder: <integer>
+                    isLiked: <boolean>
+                  - sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    userLearningStatus: <integer>
+                    sessionId: <integer>
+                    sessionOrder: <integer>
+                    isLiked: <boolean>
+  /v2/sessionItems/users/{userId}/items/{itemId}/itemTypes/{itemTypeId}/like:
+    put:
+      tags:
+        - default
+      summary: UpsertUserLikeByItemId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                itemId: <integer>
+                itemTypeId: <integer>
+                isLiked: <boolean>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: itemId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: itemTypeId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/sessionItems/users/{userId}/lessons/{lessonId}/cards:
+    get:
+      tags:
+        - default
+      summary: GetUserLessonCardsByLessonId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: includeRecommendedItems
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: lessonId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                itemInfo:
+                  item:
+                    sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionId: <integer>
+                    isLiked: <boolean>
+                    userLearningStatus: <integer>
+                  cards:
+                    - id: <integer>
+                      name: <string>
+                      description: <string>
+                      url: <string>
+                      order: <integer>
+                      audioUrl: <string>
+                      downloadUrl: <string>
+                      minTime: <integer>
+                      editorId: <integer>
+                      learningStatusId: <integer>
+                      createdAt: <integer>
+                      updatedAt: <integer>
+                    - id: <integer>
+                      name: <string>
+                      description: <string>
+                      url: <string>
+                      order: <integer>
+                      audioUrl: <string>
+                      downloadUrl: <string>
+                      minTime: <integer>
+                      editorId: <integer>
+                      learningStatusId: <integer>
+                      createdAt: <integer>
+                      updatedAt: <integer>
+                recommendedItems:
+                  - sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionId: <integer>
+                    isLiked: <boolean>
+                    userLearningStatus: <integer>
+                  - sessionItemId: <integer>
+                    sessionItemTypeId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionId: <integer>
+                    isLiked: <boolean>
+                    userLearningStatus: <integer>
+  /v2/sessionItems/users/{userId}/lessons/{lessonId}/status:
+    patch:
+      tags:
+        - default
+      summary: UpdateUserLessonStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                lessonId: <integer>
+                learningStatusId: LEARNING_STATUS_DOING
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: lessonId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                lessonId: <integer>
+                sessionItemId: <integer>
+                sessionItemType: <integer>
+  /v2/courses/init/projects/{projectId}/users/{userId}/groups/{groupId}:
+    post:
+      tags:
+        - default
+      summary: InitUserCoursesByProjectId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                projectId: <integer>
+                userId: <integer>
+                groupId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: projectId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: groupId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                coursesCreatedCount: <integer>
+                sessionsCreatedCount: <integer>
+                sessionItemsCreatedCount: <integer>
+  /v2/courses/projectApps/{projectAppId}:
+    get:
+      tags:
+        - default
+      summary: GetCoursesByProjectAppId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: page
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: projectAppId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalCount: <integer>
+                count: <integer>
+                data:
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+  /v2/courses/projects/{projectId}:
+    get:
+      tags:
+        - default
+      summary: GetCoursesByProjectId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: page
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: projectId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalCount: <integer>
+                count: <integer>
+                data:
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+  /v2/courses/{courseId}:
+    get:
+      tags:
+        - default
+      summary: GetCourseByCourseId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: includeSessions
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: includeSessionItems
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: courseId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: <integer>
+                name: <string>
+                description: <string>
+                projectAppId: <integer>
+                learningStatusId: <integer>
+                publishDate: <string>
+                createdAt: <integer>
+                updatedAt: <integer>
+                sessions:
+                  - value: >-
+                      reference #/components/schemas/Session not found in the
+                      OpenAPI spec
+                  - value: >-
+                      reference #/components/schemas/Session not found in the
+                      OpenAPI spec
+  /v2/consumptions/pages/{pageId}/users/{userId}:
+    post:
+      tags:
+        - default
+      summary: CreateUserPageConsumption
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                pageId: <integer>
+                projectId: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pageId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: <integer>
+  /v2/userPageConsumptions/{userPageConsumptionId}:
+    patch:
+      tags:
+        - default
+      summary: UpdateUserPageConsumption
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userPageConsumptionId: <integer>
+                duration: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userPageConsumptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/sessions/courses/{courseId}:
+    get:
+      tags:
+        - default
+      summary: GetSessionsByCourseId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: page
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: courseId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalCount: <integer>
+                count: <integer>
+                data:
+                  - Id: <integer>
+                    sessionId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionItems:
+                      - value: >-
+                          reference #/components/schemas/SessionItem not found
+                          in the OpenAPI spec
+                      - value: >-
+                          reference #/components/schemas/SessionItem not found
+                          in the OpenAPI spec
+                  - Id: <integer>
+                    sessionId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    sessionItems:
+                      - value: >-
+                          reference #/components/schemas/SessionItem not found
+                          in the OpenAPI spec
+                      - value: >-
+                          reference #/components/schemas/SessionItem not found
+                          in the OpenAPI spec
+  /v2/sessions/users/{userId}/courses/{courseId}:
+    get:
+      tags:
+        - default
+      summary: GetUserSessionsByCourseId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userStatus
+          in: query
+          schema:
+            type: string
+          example: LEARNING_STATUS_TODO
+        - name: includeSessionItems
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: courseId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - sessionId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    userLearningStatus: <integer>
+                    sessionItems:
+                      - value: >-
+                          reference #/components/schemas/UserSessionItem not
+                          found in the OpenAPI spec
+                      - value: >-
+                          reference #/components/schemas/UserSessionItem not
+                          found in the OpenAPI spec
+                  - sessionId: <integer>
+                    name: <string>
+                    description: <string>
+                    projectAppId: <integer>
+                    learningStatusId: <integer>
+                    publishDate: <string>
+                    data: {}
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                    order: <integer>
+                    userLearningStatus: <integer>
+                    sessionItems:
+                      - value: >-
+                          reference #/components/schemas/UserSessionItem not
+                          found in the OpenAPI spec
+                      - value: >-
+                          reference #/components/schemas/UserSessionItem not
+                          found in the OpenAPI spec
+  /v2/pages/lessons/{lessonId}:
+    get:
+      tags:
+        - default
+      summary: GetPagesByLessonId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: lessonId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    contents: {}
+                    order: <integer>
+                    audioUrl: <string>
+                    downloadUrl: <string>
+                    minTime: <integer>
+                    lessonId: <integer>
+                    editorId: <integer>
+                    learningStatusId: <integer>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+                  - id: <integer>
+                    name: <string>
+                    description: <string>
+                    contents: {}
+                    order: <integer>
+                    audioUrl: <string>
+                    downloadUrl: <string>
+                    minTime: <integer>
+                    lessonId: <integer>
+                    editorId: <integer>
+                    learningStatusId: <integer>
+                    createdAt: <integer>
+                    updatedAt: <integer>
+  /v2/pages/{pageId}/users/{userId}:
+    patch:
+      tags:
+        - default
+      summary: UpdateUserPage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                pageId: <integer>
+                userId: <integer>
+                learningStatusId: LEARNING_STATUS_DRAFT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pageId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/cards/{cardId}/users/{userId}:
+    patch:
+      tags:
+        - default
+      summary: UpdateUserCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                cardId: <integer>
+                userId: <integer>
+                learningStatusId: LEARNING_STATUS_DRAFT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cardId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /learning/v2/unlock/next:
+    post:
+      tags:
+        - default
+      summary: UnlockNextUserLearningByUserScheduleDay
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                groupId: <integer>
+                userScheduleDay: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: dta-wir-api
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/learning/lessons/{lessonId}/users/{userId}/completed:
+    post:
+      tags:
+        - default
+      summary: COMPLETE User Learning Lesson
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                lessonId: <integer>
+                learningType: UNKNOWN
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: lessonId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                lessonId: <integer>
+  /v2/questionnaires/users/{userId}:
+    get:
+      tags:
+        - default
+      summary: GET User Questionnaires
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: postman
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userId: <integer>
+                questionnaires:
+                  - round: <integer>
+                    isiCompleted: <boolean>
+                    isiScore: <integer>
+                    phq9Completed: <boolean>
+                    phq9Score: <integer>
+                    gad7Completed: <boolean>
+                    gad7Score: <integer>
+                    wiqCompleted: <boolean>
+                    updatedAt: <integer>
+                  - round: <integer>
+                    isiCompleted: <boolean>
+                    isiScore: <integer>
+                    phq9Completed: <boolean>
+                    phq9Score: <integer>
+                    gad7Completed: <boolean>
+                    gad7Score: <integer>
+                    wiqCompleted: <boolean>
+                    updatedAt: <integer>
+  /v2/questionnaires/{questionnaireId}/users/{userId}:
+    post:
+      tags:
+        - default
+      summary: ANSWER User Questionnaire
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                questionnaireId: <integer>
+                date: <long>
+                answers:
+                  - itemKey: <integer>
+                    optionKey: <integer>
+                    answerText: <string>
+                  - itemKey: <integer>
+                    optionKey: <integer>
+                    answerText: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: questionnaireId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                answerId: <integer>
+  /v2/remoteConfigs:
+    get:
+      tags:
+        - default
+      summary: GET Remote Configs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - key: <string>
+                    value: <string>
+                  - key: <string>
+                    value: <string>
+  /v2/clock:
+    get:
+      tags:
+        - default
+      summary: GET Clock Time
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                unix: <integer>
+  /v2/logs:
+    post:
+      tags:
+        - default
+      summary: CREATE Log
+      description: >-
+        CreateLog creates a notification log - this is used for sending
+        notifications to admins
+         Currently, this is used for sending slack and discord notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                domainId: <integer>
+                projectId: <integer>
+                serviceName: <string>
+                severity: ERROR
+                message: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header. http or grpc
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /v2/logs/app-lifecycle:
+    post:
+      tags:
+        - default
+      summary: CREATE App Life Cycle Logs
+      description: CreateAppLifeCycleLogs creates a list of app life cycle logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                logs:
+                  - lifeCycle: <string>
+                    timestamp: <double>
+                  - lifeCycle: <string>
+                    timestamp: <double>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header. http or grpc
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                logId: <integer>
+  /v2/inquiries:
+    post:
+      tags:
+        - settings
+      summary: CREATE Inquiry
+      description: |-
+        #app-settings
+
+        CreateInquiry: 문의 생성
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: <integer>
+                email: <email>
+                subject: <string>
+                message: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: x-request-dtx-dst-protocol
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: http
+        - name: x-request-dtx-src-service-name
+          in: header
+          schema:
+            type: string
+          required: true
+          description: (Required) This is request protocol header
+          example: swagger-ui
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                inquiryId: <integer>
+  /v1/iam/auth:
+    post:
+      tags:
+        - default
+      summary: AUTH JWT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                token: <string>
+                tokenType: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                payload: <string>
+  /v1/iam/jwks:
+    get:
+      tags:
+        - default
+      summary: GET JWKs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                keys:
+                  - kty: <string>
+                    'n': <string>
+                    use: <string>
+                    e: <string>
+                    kid: <string>
+                  - kty: <string>
+                    'n': <string>
+                    use: <string>
+                    e: <string>
+                    kid: <string>
+  /v1/iam/jwt:
+    post:
+      tags:
+        - default
+      summary: CREATE JWT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountId: <integer>
+                tokenType: <string>
+                accountType: <integer>
+                expiresAt: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                token: <string>
+  /connectdtx/reports/users/{userId}:
+    get:
+      tags:
+        - default
+      summary: GET User Reports
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '(Required) '
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                startAt: <integer>
+                days: <integer>
+                userCycleId: <integer>
+                reports:
+                  - week: <integer>
+                    startDate: <integer>
+                    endDate: <integer>
+                    diaries:
+                      - refDate: <integer>
+                        dns: <boolean>
+                        lot: <integer>
+                        ast: <integer>
+                        aet: <integer>
+                        waso: <integer>
+                        tst: <integer>
+                        se: <integer>
+                        targetLot: <integer>
+                        targetAet: <integer>
+                        hasCompliedWithLot: <boolean>
+                        hasCompliedWithAet: <boolean>
+                      - refDate: <integer>
+                        dns: <boolean>
+                        lot: <integer>
+                        ast: <integer>
+                        aet: <integer>
+                        waso: <integer>
+                        tst: <integer>
+                        se: <integer>
+                        targetLot: <integer>
+                        targetAet: <integer>
+                        hasCompliedWithLot: <boolean>
+                        hasCompliedWithAet: <boolean>
+                    questionnaire:
+                      round: <integer>
+                      isiCompleted: <boolean>
+                      isiScore: <integer>
+                      isiScoreTotal: <integer>
+                      phq9Completed: <boolean>
+                      phq9Score: <integer>
+                      phq9ScoreTotal: <integer>
+                      gad7Completed: <boolean>
+                      gad7Score: <integer>
+                      gad7ScoreTotal: <integer>
+                      wiqCompleted: <boolean>
+                      updatedAt: <integer>
+                  - week: <integer>
+                    startDate: <integer>
+                    endDate: <integer>
+                    diaries:
+                      - refDate: <integer>
+                        dns: <boolean>
+                        lot: <integer>
+                        ast: <integer>
+                        aet: <integer>
+                        waso: <integer>
+                        tst: <integer>
+                        se: <integer>
+                        targetLot: <integer>
+                        targetAet: <integer>
+                        hasCompliedWithLot: <boolean>
+                        hasCompliedWithAet: <boolean>
+                      - refDate: <integer>
+                        dns: <boolean>
+                        lot: <integer>
+                        ast: <integer>
+                        aet: <integer>
+                        waso: <integer>
+                        tst: <integer>
+                        se: <integer>
+                        targetLot: <integer>
+                        targetAet: <integer>
+                        hasCompliedWithLot: <boolean>
+                        hasCompliedWithAet: <boolean>
+                    questionnaire:
+                      round: <integer>
+                      isiCompleted: <boolean>
+                      isiScore: <integer>
+                      isiScoreTotal: <integer>
+                      phq9Completed: <boolean>
+                      phq9Score: <integer>
+                      phq9ScoreTotal: <integer>
+                      gad7Completed: <boolean>
+                      gad7Score: <integer>
+                      gad7ScoreTotal: <integer>
+                      wiqCompleted: <boolean>
+                      updatedAt: <integer>
+  /connectdtx/observations:
+    get:
+      tags:
+        - default
+      summary: GET Observations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: <integer>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                date: <integer>
+                observations:
+                  - userId: <integer>
+                    userCycleId: <integer>
+                    phiCode: <string>
+                    patientId: <string>
+                    date: <string>
+                    dns: <boolean>
+                    dse: <integer>
+                    tst: <integer>
+                    se: <integer>
+                    sol: <integer>
+                    waso: <integer>
+                    pill: <boolean>
+                    nap: <integer>
+                    sleepQuality: <integer>
+                    createdAt: <integer>
+                  - userId: <integer>
+                    userCycleId: <integer>
+                    phiCode: <string>
+                    patientId: <string>
+                    date: <string>
+                    dns: <boolean>
+                    dse: <integer>
+                    tst: <integer>
+                    se: <integer>
+                    sol: <integer>
+                    waso: <integer>
+                    pill: <boolean>
+                    nap: <integer>
+                    sleepQuality: <integer>
+                    createdAt: <integer>
+  /connectdtx/users/results/targets:
+    get:
+      tags:
+        - default
+      summary: GET Users Results Targets
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: resultType
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                date: <integer>
+                resultType: <string>
+                targets:
+                  - userId: <integer>
+                    userCycleId: <integer>
+                    phiCode: <string>
+                    patientId: <string>
+                    day: <integer>
+                    week: <integer>
+                    startAt: <integer>
+                  - userId: <integer>
+                    userCycleId: <integer>
+                    phiCode: <string>
+                    patientId: <string>
+                    day: <integer>
+                    week: <integer>
+                    startAt: <integer>
+  /connectdtx/results/observation:
+    post:
+      tags:
+        - default
+      summary: CREATE Results Observation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                observation:
+                  userId: <integer>
+                  userCycleId: <integer>
+                  phiCode: <string>
+                  dtxPatientId: <string>
+                  date: <string>
+                  dns: <boolean>
+                  dse: <integer>
+                  tst: <integer>
+                  se: <integer>
+                  sol: <integer>
+                  waso: <integer>
+                  sleepQuality: <integer>
+                  pill: <boolean>
+                  nap: <integer>
+                  createdAt: <integer>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+  /connectdtx/results/weekly-report:
+    post:
+      tags:
+        - default
+      summary: CREATE Results Weekly Report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                weeklyReport:
+                  userId: <integer>
+                  userCycleId: <integer>
+                  phiCode: <string>
+                  dtxPatientId: <string>
+                  cycleStartAt: <integer>
+                  contentType: <string>
+                  base64Data: <string>
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>

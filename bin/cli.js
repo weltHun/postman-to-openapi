@@ -27,8 +27,8 @@ program
   .action(async (collection, { file, options }, command) => {
     try {
       const parsedOptions = await parseOptions(options)
-      const result = await postmanToOpenApi(collection, file, parsedOptions)
-      console.info(result)
+      await postmanToOpenApi(collection, file, parsedOptions)
+      // console.info(result)
     } catch (err) {
       throw new Error(err)
     }
